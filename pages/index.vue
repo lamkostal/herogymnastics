@@ -30,7 +30,7 @@
           <UButton color="gray" @click="setDuration(20,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">20s</UButton>
           <UButton color="gray" @click="setDuration(10,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">10s</UButton> -->
           <div class="flex gap-2">
-            <UButton v-for="(but, index) in durButtons" color="gray" @click.passive="setDuration(but.time, index)" class=" mt-1"
+            <UButton v-for="(but, index) in durButtons" variant="outline" color="gray" @click.passive="setDuration(but.time, index)" class=" mt-1"
               :class="{ activeclass: index === activeIndex }" size="lg" :disabled="disabled">{{ but.time }}s</UButton>
           </div>
        </div>
@@ -282,6 +282,9 @@ watchEffect(() => {
 </script>
 
 <style >
+:root {
+  color-scheme: only light;
+}
 body{
   background-color: #fff;
 }
@@ -299,4 +302,5 @@ body{
 .v-leave-to {
   opacity: 0;
 }
+
 </style>
