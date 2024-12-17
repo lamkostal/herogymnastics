@@ -1,10 +1,10 @@
 <template>
-  <UContainer class="md:py-8">
+  <UContainer class="py-2 md:py-8">
     <!-- //Group Setup Buttons// -->
     <div class="flex md:justify-end gap-1">
-      <UButton  color="indigo" size="sm" activeClass="bg-red-500 my-10" variant="outline" >ΩΜΟΙ</UButton>
-      <UButton  color="indigo" size="sm" activeClass="bg-red-500" variant="outline">ΠΛΑΤΗ</UButton>
-      <UButton  color="indigo" size="sm" activeClass="bg-red-500" variant="outline" >ΜΕΣΗ</UButton>
+      <UButton  color="indigo" size="xs" activeClass="bg-red-500 my-10" variant="outline" >ΩΜΟΙ</UButton>
+      <UButton  color="indigo" size="xs" activeClass="bg-red-500" variant="outline">ΠΛΑΤΗ</UButton>
+      <UButton  color="indigo" size="xs" activeClass="bg-red-500" variant="outline" >ΜΕΣΗ</UButton>
     </div>
     <!-- Init Buttons  -->
     <UButton icon="i-tabler-player-play" v-if="state === 'notInit'" @click="init()" class="hover:transition-all my-1"
@@ -22,7 +22,19 @@
 
     <!-- //Buttons wrapper// -->
       <div class="w-full justify-between md:justify-start items-end md:items-start md:w-2/12 flex md:flex-col md:gap-1 mb-2">
-         <!-- Prev-Next Buttons  -->
+      
+         <!-- Duration Buttons  -->
+       <div class="md:gap-1">
+          <p class="text-xs md:text-sm md:mt-2"><strong>Set Exercise Duration:</strong></p>
+          <!-- <UButton color="gray" @click="setDuration(30,$event)" class="mr-1 my-1 "  size="lg" :disabled="disabled">30s</UButton>
+          <UButton color="gray" @click="setDuration(20,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">20s</UButton>
+          <UButton color="gray" @click="setDuration(10,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">10s</UButton> -->
+          <div class="flex gap-2">
+            <UButton v-for="(but, index) in durButtons" color="gray" @click="setDuration(but.time, index)" class="hover:pointer-events-none md:hover:pointer-events-auto mt-1"
+              :class="{ activeclass: index === activeIndex }" size="lg" :disabled="disabled">{{ but.time }}s</UButton>
+          </div>
+       </div>
+          <!-- Prev-Next Buttons  -->
       <div class="md:w-full">
         <UButton  class=" mr-1 " size="lg" :disabled="isPrevDisbled || isBreak" color="indigo" icon="i-tabler-player-track-prev"
           @click="previous()">
@@ -30,17 +42,7 @@
         <UButton  class=" mr-1 md:mt-1" size="lg" :disabled="isNextDisbled || isBreak" color="indigo" icon="i-tabler-player-track-next" @click="next()"
           ></UButton>
       </div>
-         <!-- Duration Buttons  -->
-       <div class="md:gap-1">
-          <p class="text-sm md:mt-2"><strong>Set Exercise Duration:</strong></p>
-          <!-- <UButton color="gray" @click="setDuration(30,$event)" class="mr-1 my-1 "  size="lg" :disabled="disabled">30s</UButton>
-          <UButton color="gray" @click="setDuration(20,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">20s</UButton>
-          <UButton color="gray" @click="setDuration(10,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">10s</UButton> -->
-          <div class="flex gap-2">
-            <UButton v-for="(but, index) in durButtons" color="gray" @click="setDuration(but.time, index)" class=" mt-1"
-              :class="{ activeclass: index === activeIndex }" size="lg" :disabled="disabled">{{ but.time }}s</UButton>
-          </div>
-       </div>
+
       
       </div>
       <!-- VIDEO -->
@@ -67,15 +69,15 @@
       </div>
       <!-- PROGRESS BAR -->
       <div class="w-full md:w-4/12 flex flex-col md:justify-start md:gap-9 md:items-end">
-        <p v-show="isBreak" class="md:text-xl text-center font-bold self-center">Take a 5 seconds break</p>
-        <p  v-show="isBreak!==true" class="md:text-xl text-center font-bold self-center ">{{ videoIndex + 1+"/"+sources.length }} - {{ " " + sources[videoIndex].title }}</p>
+        <p v-show="isBreak" class="text-sm md:text-xl text-center font-bold self-center">Take a 5 seconds break</p>
+        <p  v-show="isBreak!==true" class="text-sm md:text-xl text-center font-bold self-center ">{{ videoIndex + 1+"/"+sources.length }} - {{ " " + sources[videoIndex].title }}</p>
         <UProgress class="w-full" size="2xl" :value="time" :max="duration">
           <template #indicator="{ percent }">
             
-            <div class="text-indigo-500  font-bold text-lg text-center md:text-right">
+            <div class="text-indigo-500  font-bold text-sm md:text-lg text-center md:text-right">
               <Transition><span v-show="percent>70" class="mr-2">Almost there!</span></Transition>
              
-              <span class="text-xl" >{{Math.ceil(duration-(duration*(percent/100)))}}</span>
+              <span class=" text-lg md:text-xl" >{{Math.ceil(duration-(duration*(percent/100)))}}</span>
               <UIcon name="i-ic-baseline-timer" class="ml-1"  />
               
             </div>
@@ -279,11 +281,14 @@ watchEffect(() => {
 
 </script>
 
-<style scoped>
+<style >
+body{
+  background-color: #fff;
+}
 .activeclass {
   background-color: #6366f1;
   color: #fff;
-  transition: all 0.4s ease;
+  transition: all 0.3s ease;
 }
 .v-enter-active,
 .v-leave-active {
