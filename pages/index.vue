@@ -25,7 +25,7 @@
       
          <!-- Duration Buttons  -->
        <div class="md:gap-1">
-          <p class="text-xs md:text-sm md:mt-2"><strong>Set Exercise Duration:</strong></p>
+          <p class="text-sm md:mt-2"><strong>Set Exercise Duration:</strong></p>
           <!-- <UButton color="gray" @click="setDuration(30,$event)" class="mr-1 my-1 "  size="lg" :disabled="disabled">30s</UButton>
           <UButton color="gray" @click="setDuration(20,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">20s</UButton>
           <UButton color="gray" @click="setDuration(10,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">10s</UButton> -->
@@ -288,7 +288,7 @@ body{
 .activeclass {
   background-color: #6366f1;
   color: #fff;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 .v-enter-active,
 .v-leave-active {
