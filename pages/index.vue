@@ -25,7 +25,7 @@
       
          <!-- Duration Buttons  -->
        <div class="md:gap-1">
-          <p class="text-sm md:mt-2"><strong>Set Exercise Duration:</strong></p>
+          <p class="text-xs md:text-lg md:mt-2 text-black"><strong>Set Exercise Duration:</strong></p>
           <!-- <UButton color="gray" @click="setDuration(30,$event)" class="mr-1 my-1 "  size="lg" :disabled="disabled">30s</UButton>
           <UButton color="gray" @click="setDuration(20,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">20s</UButton>
           <UButton color="gray" @click="setDuration(10,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">10s</UButton> -->
@@ -68,7 +68,7 @@
         </figure>
       </div>
       <!-- PROGRESS BAR -->
-      <div class="w-full md:w-4/12 flex flex-col md:justify-start md:gap-9 md:items-end">
+      <div class="w-full md:w-4/12 flex flex-col md:justify-start md:gap-9 md:items-end text-black">
         <p v-show="isBreak" class="text-sm md:text-xl text-center font-bold self-center">Take a 5 seconds break</p>
         <p  v-show="isBreak!==true" class="text-sm md:text-xl text-center font-bold self-center ">{{ videoIndex + 1+"/"+sources.length }} - {{ " " + sources[videoIndex].title }}</p>
         <UProgress class="w-full" size="2xl" :value="time" :max="duration">
