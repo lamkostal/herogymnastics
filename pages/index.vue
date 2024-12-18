@@ -45,8 +45,8 @@
       <!-- VIDEO -->
        <div class="w-full md:w-4/12 justify-self-center justify-center items-center flex">
    
-        <Transition name="video">
-          <div v-show="isBreak === false" class=" overflow-hidden    ">
+        <Transition name="video" appear>
+          <div v-show="isBreak === false && state!=='notInit'" class=" overflow-hidden    ">
             <figure class="">
               <video ref="videoref" loop="" muted="" playsinline="" style="max-width:100%" data-loaded="true" >
                 <source type="video/mp4" :src="sources[videoIndex].src">
@@ -55,9 +55,13 @@
           </div>
         </Transition>
       <!-- COUNTER -->
-
+      <figure>
+              <Transition name="video">
+               <img v-show="state==='notInit'" src="https://res.cloudinary.com/lamkos/image/upload/v1734518873/hero%20gymnastics/%CE%91%CF%83%CE%BA%CE%B7%CF%83%CE%B5%CE%B9%CF%82%CE%95%CE%BD%CE%B4_g19j43.png" alt="">
+              </Transition>
+            </figure>
       
-          <div v-show="isBreak" >
+          <div v-show="isBreak && state!=='notInit'" >
             <figure>
               <Transition name="video">
                 <video  preload="auto" v-show="isCounterVisible" ref="timer" muted="" playsinline="" style="max-width:100%"
