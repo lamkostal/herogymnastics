@@ -43,28 +43,34 @@
       
       </div>
       <!-- VIDEO -->
-      <Transition mode="out-in" name="video">
-        <div v-show="isBreak === false" class=" overflow-hidden  w-full md:w-4/12 justify-self-center justify-center items-center flex  ">
-          <figure class="">
-            <video ref="videoref" loop="" muted="" playsinline="" style="max-width:100%" data-loaded="true" >
-              <source type="video/mp4" :src="sources[videoIndex].src">
-            </video>
-          </figure>
-        </div>
-      </Transition>
+       <div class="w-full md:w-4/12 justify-self-center justify-center items-center flex">
+   
+        <Transition name="video">
+          <div v-show="isBreak === false" class=" overflow-hidden    ">
+            <figure class="">
+              <video ref="videoref" loop="" muted="" playsinline="" style="max-width:100%" data-loaded="true" >
+                <source type="video/mp4" :src="sources[videoIndex].src">
+              </video>
+            </figure>
+          </div>
+        </Transition>
       <!-- COUNTER -->
-      <div v-show="isBreak" class=" w-full md:w-4/12 justify-self-center">
-        <figure>
-          
-            <video  preload="auto" v-show="isCounterVisible" ref="timer" muted="" playsinline="" style="max-width:100%"
-            poster="https://res.cloudinary.com/lamkos/image/upload/v1734518873/hero%20gymnastics/%CE%91%CF%83%CE%BA%CE%B7%CF%83%CE%B5%CE%B9%CF%82%CE%95%CE%BD%CE%B4_g19j43.png"
-              data-loaded="true">
-              <source type="video/mp4"
-                src="https://res.cloudinary.com/lamkos/video/upload/v1734016487/hero%20gymnastics/simple_count_fmengs.mp4">
-            </video>
-      
-        </figure>
+
+        <Transition name="video">
+          <div v-show="isBreak" class=" ">
+            <figure>
+                <video  preload="auto" v-show="isCounterVisible" ref="timer" muted="" playsinline="" style="max-width:100%"
+                poster="https://res.cloudinary.com/lamkos/image/upload/v1734518873/hero%20gymnastics/%CE%91%CF%83%CE%BA%CE%B7%CF%83%CE%B5%CE%B9%CF%82%CE%95%CE%BD%CE%B4_g19j43.png"
+                  data-loaded="true">
+                  <source type="video/mp4"
+                    src="https://res.cloudinary.com/lamkos/video/upload/v1734016487/hero%20gymnastics/simple_count_fmengs.mp4">
+                </video>
+            </figure>
+          </div>
+        </Transition>
+
       </div>
+    
       <!-- PROGRESS BAR -->
       <div class="w-full md:w-4/12 flex flex-col md:justify-start md:gap-9 md:items-end text-black">
       <p v-show="isBreak && state!=='notInit'" class="text-sm md:text-xl text-center font-bold self-center">Take a 5 seconds break</p>
@@ -289,10 +295,10 @@ body{
   transition: all 0.3s ease;
 }
 .video-enter-active{
-  transition: opacity 0.4s ease;
+  transition: opacity 0.3s ease;
 }
 .video-leave-active {
-  transition: opacity 0.15s ease;
+  transition: opacity 0s ;
 }
 
 .video-enter-from,
