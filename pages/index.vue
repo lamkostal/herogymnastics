@@ -43,7 +43,7 @@
       
       </div>
       <!-- VIDEO -->
-      <Transition name="video" :duration="{ enter: 1000, leave: 0 }">
+      <Transition name="video">
         <div v-show="isBreak === false" class=" overflow-hidden  w-full md:w-4/12 justify-self-center justify-center items-center flex  ">
           <figure class="">
             <video ref="videoref" loop="" muted="" playsinline="" style="max-width:100%" data-loaded="true" >
@@ -67,15 +67,15 @@
       </div>
       <!-- PROGRESS BAR -->
       <div class="w-full md:w-4/12 flex flex-col md:justify-start md:gap-9 md:items-end text-black">
-        <p v-show="isBreak && state!=='notInit'" class="text-sm md:text-xl text-center font-bold self-center">Take a 5 seconds break</p>
+       <Transition name="global"> <p v-show="isBreak && state!=='notInit'" class="text-sm md:text-xl text-center font-bold self-center">Take a 5 seconds break</p></Transition>
         <p v-show="state==='notInit'" class="text-sm md:text-xl text-center font-bold self-center">Begining in 5s</p>
 
-        <p  v-show="isBreak!==true" class="text-sm md:text-xl text-center font-bold self-center ">{{ videoIndex + 1+"/"+sources.length }} - {{ " " + sources[videoIndex].title }}</p>
+        <Transition name="global"><p  v-show="isBreak!==true" class="text-sm md:text-xl text-center font-bold self-center ">{{ videoIndex + 1+"/"+sources.length }} - {{ " " + sources[videoIndex].title }}</p></Transition>
         <UProgress class="w-full" size="2xl" :value="time" :max="duration">
           <template #indicator="{ percent }">
             
             <div class="text-indigo-500  font-bold text-sm md:text-lg text-right">
-              <Transition><span v-show="percent>70" class="mr-2">Almost there!</span></Transition>
+              <Transition name="global"><span v-show="percent>70" class="mr-2">Almost there!</span></Transition>
              
               <span class="text-xl" >{{Math.ceil(duration-(duration*(percent/100)))}}</span>
               <UIcon name="i-ic-baseline-timer" class="ml-1"  />
@@ -300,13 +300,13 @@ body{
   opacity: 0;
 }
 
-.v-enter-active,
-.v-leave-active {
+.global-enter-active,
+.global-leave-active {
   transition: opacity 0.4s ease;
 }
 
-.v-enter-from,
-.v-leave-to {
+.global-enter-from,
+.global-leave-to {
   opacity: 0;
 }
 
