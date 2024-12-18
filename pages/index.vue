@@ -67,10 +67,10 @@
       </div>
       <!-- PROGRESS BAR -->
       <div class="w-full md:w-4/12 flex flex-col md:justify-start md:gap-9 md:items-end text-black">
-       <Transition  mode="out-in" name="global"> <p v-show="isBreak && state!=='notInit'" class="text-sm md:text-xl text-center font-bold self-center">Take a 5 seconds break</p></Transition>
+      <p v-show="isBreak && state!=='notInit'" class="text-sm md:text-xl text-center font-bold self-center">Take a 5 seconds break</p>
         <p v-show="state==='notInit'" class="text-sm md:text-xl text-center font-bold self-center">Begining in 5s</p>
 
-        <Transition mode="out-in" name="global"><p  v-show="isBreak!==true" class="text-sm md:text-xl text-center font-bold self-center ">{{ videoIndex + 1+"/"+sources.length }} - {{ " " + sources[videoIndex].title }}</p></Transition>
+        <p  v-show="isBreak!==true" class="text-sm md:text-xl text-center font-bold self-center ">{{ videoIndex + 1+"/"+sources.length }} - {{ " " + sources[videoIndex].title }}</p>
         <UProgress class="w-full" size="2xl" :value="time" :max="duration">
           <template #indicator="{ percent }">
             
@@ -292,7 +292,7 @@ body{
   transition: opacity 0.4s ease;
 }
 .video-leave-active {
-  transition: opacity 0s ease;
+  transition: opacity 0.15s ease;
 }
 
 .video-enter-from,
