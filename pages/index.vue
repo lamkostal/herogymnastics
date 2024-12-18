@@ -21,7 +21,7 @@
     <div id="card-wrapper" class=" my-1 md:my-8 flex justify-center md:justify-between md:gap-1  relative flex-wrap">
 
     <!-- //Buttons wrapper// -->
-      <div class="w-full justify-between md:justify-start items-end md:items-start md:w-2/12 flex md:flex-col md:gap-1 mb-2">
+      <div class="w-full justify-between md:justify-start items-end md:items-start md:w-3/12 flex md:flex-col md:gap-1 mb-2">
       
          <!-- Duration Buttons  -->
        <div class="md:gap-1">
@@ -43,7 +43,7 @@
       
       </div>
       <!-- VIDEO -->
-      <Transition :duration="{ enter: 1000, leave: 0 }">
+      <Transition name="video" :duration="{ enter: 1000, leave: 0 }">
         <div v-show="isBreak === false" class=" overflow-hidden  w-full md:w-4/12 justify-self-center justify-center items-center flex  ">
           <figure class="">
             <video ref="videoref" loop="" muted="" playsinline="" style="max-width:100%" data-loaded="true" >
@@ -55,19 +55,21 @@
       <!-- COUNTER -->
       <div v-show="isBreak" class=" w-full md:w-4/12 justify-self-center">
         <figure>
-          <!-- <Transition :duration="{ enter: 500, leave: 1500 }"> -->
+          
             <video  preload="auto" v-show="isCounterVisible" ref="timer" muted="" playsinline="" style="max-width:100%"
             poster="https://res.cloudinary.com/lamkos/image/upload/v1734518873/hero%20gymnastics/%CE%91%CF%83%CE%BA%CE%B7%CF%83%CE%B5%CE%B9%CF%82%CE%95%CE%BD%CE%B4_g19j43.png"
               data-loaded="true">
               <source type="video/mp4"
                 src="https://res.cloudinary.com/lamkos/video/upload/v1734016487/hero%20gymnastics/simple_count_fmengs.mp4">
             </video>
-          <!-- </Transition> -->
+      
         </figure>
       </div>
       <!-- PROGRESS BAR -->
       <div class="w-full md:w-4/12 flex flex-col md:justify-start md:gap-9 md:items-end text-black">
-        <p v-show="isBreak" class="text-sm md:text-xl text-center font-bold self-center">Take a 5 seconds break</p>
+        <p v-show="isBreak && state!=='notInit'" class="text-sm md:text-xl text-center font-bold self-center">Take a 5 seconds break</p>
+        <p v-show="state==='notInit'" class="text-sm md:text-xl text-center font-bold self-center">Begining in 5s</p>
+
         <p  v-show="isBreak!==true" class="text-sm md:text-xl text-center font-bold self-center ">{{ videoIndex + 1+"/"+sources.length }} - {{ " " + sources[videoIndex].title }}</p>
         <UProgress class="w-full" size="2xl" :value="time" :max="duration">
           <template #indicator="{ percent }">
@@ -284,8 +286,20 @@ body{
 .activeclass {
   background-color: #6366f1 !important;
   color: #fff !important;
-  /* transition: all 0.3s ease; */
+  transition: all 0.3s ease;
 }
+.video-enter-active{
+  transition: opacity 0.4s ease;
+}
+.video-leave-active {
+  transition: opacity 0s ease;
+}
+
+.video-enter-from,
+.video-leave-to {
+  opacity: 0;
+}
+
 .v-enter-active,
 .v-leave-active {
   transition: opacity 0.4s ease;
@@ -295,5 +309,6 @@ body{
 .v-leave-to {
   opacity: 0;
 }
+
 
 </style>
