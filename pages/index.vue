@@ -45,7 +45,7 @@
       <!-- VIDEO -->
        <div class="w-full md:w-4/12 justify-self-center justify-center items-center flex">
    
-        <Transition name="video" appear>
+        <Transition name="video" appear="true">
           <div v-show="isBreak === false && state!=='notInit'" class=" overflow-hidden    ">
             <figure class="">
               <video ref="videoref" loop="" muted="" playsinline="" style="max-width:100%" data-loaded="true" >
@@ -65,7 +65,6 @@
             <figure>
               <Transition name="video">
                 <video  preload="auto" v-show="isCounterVisible" ref="timer" muted="" playsinline="" style="max-width:100%"
-                poster="https://res.cloudinary.com/lamkos/image/upload/v1734518873/hero%20gymnastics/%CE%91%CF%83%CE%BA%CE%B7%CF%83%CE%B5%CE%B9%CF%82%CE%95%CE%BD%CE%B4_g19j43.png"
                   data-loaded="true">
                   <source type="video/mp4"
                     src="https://res.cloudinary.com/lamkos/video/upload/v1734016487/hero%20gymnastics/simple_count_fmengs.mp4">
