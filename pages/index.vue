@@ -25,12 +25,9 @@
       
          <!-- Duration Buttons  -->
        <div class="md:gap-1">
-          <p class="text-xs md:text-lg md:mt-2 text-black"><strong>Set Exercise Duration:</strong></p>
-          <!-- <UButton color="gray" @click="setDuration(30,$event)" class="mr-1 my-1 "  size="lg" :disabled="disabled">30s</UButton>
-          <UButton color="gray" @click="setDuration(20,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">20s</UButton>
-          <UButton color="gray" @click="setDuration(10,$event)" class="mr-1 my-1" size="lg" :disabled="disabled">10s</UButton> -->
-          <div class="flex gap-2">
-            <UButton v-for="(but, index) in durButtons" variant="outline" color="gray" @click.passive="setDuration(but.time, index)" class=" mt-1"
+          <p class="text-xs md:text-lg text-black"><strong>Set Exercise Duration:</strong></p>
+          <div class="flex gap-1">
+            <UButton v-for="(but, index) in durButtons" variant="outline" color="gray" @click.passive="setDuration(but.time, index)" class="mt-1"
               :class="{ activeclass: index === activeIndex }" size="lg" :disabled="disabled">{{ but.time }}s</UButton>
           </div>
        </div>
@@ -59,7 +56,8 @@
       <div v-show="isBreak" class=" w-full md:w-4/12 justify-self-center">
         <figure>
           <!-- <Transition :duration="{ enter: 500, leave: 1500 }"> -->
-            <video preload="auto" v-show="isCounterVisible" ref="timer" muted="" playsinline="" style="max-width:100%"
+            <video  preload="auto" v-show="isCounterVisible" ref="timer" muted="" playsinline="" style="max-width:100%"
+            poster="https://res.cloudinary.com/lamkos/image/upload/v1734518873/hero%20gymnastics/%CE%91%CF%83%CE%BA%CE%B7%CF%83%CE%B5%CE%B9%CF%82%CE%95%CE%BD%CE%B4_g19j43.png"
               data-loaded="true">
               <source type="video/mp4"
                 src="https://res.cloudinary.com/lamkos/video/upload/v1734016487/hero%20gymnastics/simple_count_fmengs.mp4">
@@ -74,10 +72,10 @@
         <UProgress class="w-full" size="2xl" :value="time" :max="duration">
           <template #indicator="{ percent }">
             
-            <div class="text-indigo-500  font-bold text-sm md:text-lg text-center md:text-right">
+            <div class="text-indigo-500  font-bold text-sm md:text-lg text-right">
               <Transition><span v-show="percent>70" class="mr-2">Almost there!</span></Transition>
              
-              <span class="text-lg md:text-xl" >{{Math.ceil(duration-(duration*(percent/100)))}}</span>
+              <span class="text-xl" >{{Math.ceil(duration-(duration*(percent/100)))}}</span>
               <UIcon name="i-ic-baseline-timer" class="ml-1"  />
               
             </div>
@@ -235,8 +233,6 @@ function next() {
 
 }
 
-
-
 watchEffect(() => {
 
   if (time.value > duration.value && videoIndex.value < sources.value.length - 1) {
@@ -253,7 +249,6 @@ watchEffect(() => {
   if (state.value === 'running') {
     disabled.value = true
   } else { disabled.value = false }
-
 
   if (time.value > (duration.value) && videoIndex.value === sources.value.length - 1) {
     isOpen.value = true
@@ -282,15 +277,13 @@ watchEffect(() => {
 </script>
 
 <style >
-:root {
-  color-scheme: only light;
-}
+
 body{
   background-color: #fff;
 }
 .activeclass {
-  background-color: #6366f1;
-  color: #fff;
+  background-color: #6366f1 !important;
+  color: #fff !important;
   /* transition: all 0.3s ease; */
 }
 .v-enter-active,
